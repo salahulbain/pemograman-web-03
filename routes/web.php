@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +19,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('admin')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resources([
+            'mahasiswa' => MahasiswaController::class,
+        ]);
+    });
 
-Route::middleware(['auth', 'verified'])->group(function(){
-    Route::resource('mahasiswa',MahasiswaController::class);
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

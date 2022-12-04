@@ -43,7 +43,7 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active">
+                <li class="sidebar-item {{ Request::is('admin') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}" class="sidebar-link">
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -52,7 +52,7 @@
 
                 <li class="sidebar-title">Master Data</li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('admin/mahasiswa*') ? 'active' : '' }}">
                     <a href="{{ route('mahasiswa.index') }}" class="sidebar-link">
                         <i class="bi bi-people"></i>
                         <span>Data Mahasiswa</span>

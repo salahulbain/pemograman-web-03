@@ -16,7 +16,8 @@
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-header text-center">
-                    <a href="#" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Tambah Data Mahasiswa</a>
+                    <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i>
+                        Tambah Data Mahasiswa</a>
                     <a href="#" class="btn btn-success"><i class="bi bi-filetype-csv"></i> Tambah Data Mahasiswa</a>
                 </div>
                 <div class="card-body">
