@@ -32,14 +32,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($mahasiswa as $item)
                                 <tr>
-                                    <td>1</td>
-                                    <td>1234556</td>
-                                    <td>Nama</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->npm }}</td>
+                                    <td>{{ $item->nama }}</td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-info">view</a>
                                     </td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4">no data</td>
+                                </tr>
+                                @endforelse
+
                             </tbody>
                             <tfoot></tfoot>
                         </table>

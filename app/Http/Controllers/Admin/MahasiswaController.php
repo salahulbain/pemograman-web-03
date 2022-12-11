@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MahasiswaRequest;
 use App\Models\Mahasiswas;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa.index');
+        $mahasiswa = Mahasiswas::all();
+        return view('admin.mahasiswa.index', compact('mahasiswa'));
     }
 
     /**
@@ -34,11 +36,21 @@ class MahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MahasiswaRequest $request)
     {
-        $request->validate([
-            'nik' => 'digits:16'
-        ]);
+        $data = [
+            'npm'           => $request->npm,
+            'nama'          => $request->nama,
+            'tempat_lahir'  => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat'        => $request->alamat,
+            'nik'           => $request->nik,
+            'no_hp'         => $request->no_hp
+        ];
+
+        Mahasiswas::create($data);
+
+        return redirect()->route('mahasiswa.index')->with('success', 'data mahasiswa berhasil di simpan');
     }
 
     /**
